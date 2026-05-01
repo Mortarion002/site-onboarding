@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Slite Onboarding Bot (Aether Ops UI)
 
-## Getting Started
+A clean, modern chat interface built with Next.js 15 that answers team questions using Slite's Ask API. It follows the Aether Ops dark-mode design system with responsive layouts and smooth interactions.
 
-First, run the development server:
+## Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Create a `.env.local` file in the root directory and add your Slite API key:
+   ```env
+   SLITE_API_KEY=your_key_here
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How it works
 
-## Learn More
+- **Frontend**: A React-based UI built with Next.js App Router, Tailwind CSS v4, and shadcn/ui components. The state is fully managed client-side using standard React hooks (`useState`, `useEffect`).
+- **Backend**: A Next.js API route (`app/api/ask/route.ts`) securely communicates with the Slite Ask API using the hidden environment variable `SLITE_API_KEY`.
+- **Styling**: It adopts a deep dark mode palette with warm orange/salmon accents (`#ff6b5c`), subtle micro-animations for the loading states, and dynamic component styling.
 
-To learn more about Next.js, take a look at the following resources:
+## Screenshot
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*(Screenshot placeholder: Imagine a dark, sleek chat interface with left-aligned bot cards and right-aligned vibrant accent user bubbles)*
