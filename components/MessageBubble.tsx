@@ -1,7 +1,8 @@
 import { Message } from "@/types";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export function MessageBubble({ message }: { message: Message }) {
   const isUser = message.role === "user";
@@ -23,9 +24,15 @@ export function MessageBubble({ message }: { message: Message }) {
               <span className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce"></span>
             </div>
           ) : (
-            <p className="whitespace-pre-wrap text-[15px] leading-relaxed">
-              {message.content}
-            </p>
+            <div className={`prose prose-sm max-w-none text-[15px] leading-relaxed ${isUser ? "prose-invert" : "dark:prose-invert"}`}>
+              {isUser ? (
+                <p className="whitespace-pre-wrap m-0">{message.content}</p>
+              ) : (
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {message.content.replace(/\{\[(\d+)\]\((.*?)\)\}/g, ' [[$1]]($2) ')}
+                </ReactMarkdown>
+              )}
+            </div>
           )}
         </div>
 
