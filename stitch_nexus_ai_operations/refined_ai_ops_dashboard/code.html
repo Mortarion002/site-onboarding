@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Primary Operations Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed-variant": "#0037ba",
+                      "on-surface-variant": "#e0bfba",
+                      "tertiary": "#c8c6c5",
+                      "on-error-container": "#ffdad6",
+                      "outline": "#a88a86",
+                      "surface-container-lowest": "#070e19",
+                      "surface-container": "#19202b",
+                      "on-primary-container": "#6d0004",
+                      "inverse-primary": "#ae3027",
+                      "on-primary": "#690003",
+                      "error": "#ffb4ab",
+                      "secondary-fixed-dim": "#b8c4ff",
+                      "on-surface": "#dce2f3",
+                      "surface-container-highest": "#2e3541",
+                      "on-secondary-container": "#a5b5ff",
+                      "primary-fixed": "#ffdad5",
+                      "error-container": "#93000a",
+                      "inverse-on-surface": "#2a313d",
+                      "on-tertiary-fixed": "#1c1b1b",
+                      "surface-container-low": "#151c27",
+                      "primary-fixed-dim": "#ffb4aa",
+                      "surface-tint": "#ffb4aa",
+                      "on-background": "#dce2f3",
+                      "secondary-container": "#0239bf",
+                      "surface": "#0c141f",
+                      "surface-dim": "#0c141f",
+                      "on-primary-fixed-variant": "#8c1713",
+                      "tertiary-fixed-dim": "#c8c6c5",
+                      "primary-container": "#ff6b5c",
+                      "on-tertiary-container": "#333232",
+                      "on-error": "#690005",
+                      "background": "#0f0f0f",
+                      "on-primary-fixed": "#410001",
+                      "primary": "#ffb4aa",
+                      "surface-container-high": "#232a36",
+                      "surface-bright": "#323946",
+                      "surface-variant": "#2e3541",
+                      "on-secondary": "#002585",
+                      "on-secondary-fixed": "#001454",
+                      "inverse-surface": "#dce2f3",
+                      "tertiary-fixed": "#e5e2e1",
+                      "secondary": "#b8c4ff",
+                      "on-tertiary-fixed-variant": "#474746",
+                      "on-tertiary": "#313030",
+                      "tertiary-container": "#9c9a9a",
+                      "outline-variant": "#59413e",
+                      "secondary-fixed": "#dde1ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section-margin": "48px",
+                      "unit": "4px",
+                      "inner-padding": "24px",
+                      "card-gap": "24px",
+                      "container-padding": "32px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "body-base": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "data-mono": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-base": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.06em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-mono": [
+                              "13px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-[#0f0f0f] text-on-surface font-body-base antialiased min-h-screen overflow-x-hidden">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 bottom-0 w-[72px] bg-[#141414] border-r border-white/5 flex flex-col items-center py-8 z-50 shadow-none transition-all duration-300 ease-out hidden md:flex">
+<div class="mb-8">
+<span class="text-orange-500 font-black text-xl tracking-tight">Ae</span>
+</div>
+<div class="flex flex-col gap-6 w-full items-center">
+<a aria-label="Home" class="w-12 h-12 flex items-center justify-center text-orange-500 bg-orange-500/10 rounded-lg shadow-[0_0_15px_rgba(255,107,92,0.1)] border border-orange-500/20 group relative" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<!-- Tooltip -->
+<div class="absolute left-14 bg-surface-container-highest px-3 py-1.5 rounded-md text-body-sm font-body-sm opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap shadow-2xl shadow-black/50 border border-white/5 z-50">Home</div>
+</a>
+<a aria-label="Analytics" class="w-12 h-12 flex items-center justify-center text-zinc-500 hover:text-zinc-200 hover:bg-white/5 rounded-lg group relative transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<div class="absolute left-14 bg-surface-container-highest px-3 py-1.5 rounded-md text-body-sm font-body-sm opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap shadow-2xl shadow-black/50 border border-white/5 z-50">Analytics</div>
+</a>
+<a aria-label="Operations" class="w-12 h-12 flex items-center justify-center text-zinc-500 hover:text-zinc-200 hover:bg-white/5 rounded-lg group relative transition-colors" href="#">
+<span class="material-symbols-outlined">settings_input_component</span>
+<div class="absolute left-14 bg-surface-container-highest px-3 py-1.5 rounded-md text-body-sm font-body-sm opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap shadow-2xl shadow-black/50 border border-white/5 z-50">Operations</div>
+</a>
+<a aria-label="Settings" class="w-12 h-12 flex items-center justify-center text-zinc-500 hover:text-zinc-200 hover:bg-white/5 rounded-lg group relative transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<div class="absolute left-14 bg-surface-container-highest px-3 py-1.5 rounded-md text-body-sm font-body-sm opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap shadow-2xl shadow-black/50 border border-white/5 z-50">Settings</div>
+</a>
+</div>
+<div class="mt-auto">
+<a aria-label="Support" class="w-12 h-12 flex items-center justify-center text-zinc-500 hover:text-zinc-200 hover:bg-white/5 rounded-lg group relative transition-colors" href="#">
+<span class="material-symbols-outlined">help_center</span>
+<div class="absolute left-14 bg-surface-container-highest px-3 py-1.5 rounded-md text-body-sm font-body-sm opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap shadow-2xl shadow-black/50 border border-white/5 z-50">Support</div>
+</a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-6 left-6 right-6 md:left-[96px] h-16 bg-[#141414]/80 backdrop-blur-[20px] rounded-xl border border-white/5 shadow-2xl shadow-black/40 flex justify-between items-center px-6 z-40 transition-transform hidden md:flex">
+<div class="flex items-center gap-8">
+<h1 class="text-white font-bold tracking-tighter text-lg">Aether Ops</h1>
+<nav class="flex gap-6 font-inter text-sm">
+<a class="text-orange-500 font-semibold" href="#">Dashboard</a>
+<a class="text-zinc-400 hover:text-white transition-colors" href="#">Overview</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group cursor-pointer flex items-center justify-center text-zinc-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">location_on</span>
+</div>
+<div class="relative group cursor-pointer flex items-center justify-center text-zinc-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary-container rounded-full ring-2 ring-[#141414]"></span>
+</div>
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-white/10 object-cover" data-alt="A close-up, high-quality portrait photograph of a young professional male. He has a neutral, focused expression. The lighting is soft and natural, suggesting a modern office environment. He is wearing a simple, dark-colored shirt. The background is slightly out of focus, maintaining a clean, premium dark mode aesthetic suitable for a high-end UI dashboard profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfMyMftxUJMx6MHig-rQMGY0n2EXdGsZTz0q2JDeHsV_4iWaZeAkT9WUUEIb4kh8bz0v0egQEHUabWYgCQQpNHGMPCSKRmjAurlLKHm3tkmD9KvXA2tWFVrUss7EI271KF4AjmPMK8aKzPYOw4i8boJPLcjSDzLwPWj5VbpYNolBQKVzhT95yOqSFgmLh9P7Gqo1o5VGEeyoDcntexyBpxWa0X5_df5Io87lDmgBZ4OrbkRahyrdejJGIOlZ8FLx1fYiOhN7sLmQU"/>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="md:pl-[96px] pt-32 pb-12 px-6 md:px-8 max-w-[1920px] mx-auto min-h-screen">
+<div class="grid grid-cols-12 gap-card-gap">
+<!-- Bento Item 1: REVENUE CARD (Large) -->
+<div class="col-span-12 lg:col-span-8 bg-gradient-to-br from-primary-container to-inverse-primary rounded-[24px] p-[32px] relative overflow-hidden shadow-2xl border border-white/5 flex flex-col justify-between min-h-[480px] shadow-black/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+<!-- Background glow/pattern abstraction -->
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-20 mix-blend-overlay"></div>
+<div class="relative z-10 flex justify-between items-start mb-8">
+<div>
+<h2 class="text-white text-[28px] font-semibold tracking-tight leading-tight">Total Revenue</h2>
+<p class="text-white/70 text-sm mt-1">Current Week Overview</p>
+</div>
+<div class="bg-black/20 backdrop-blur-md px-6 py-3 rounded-xl border border-white/10 shadow-lg">
+<div class="flex items-baseline gap-3">
+<span class="text-white font-medium text-3xl tracking-tight">$1.24M</span>
+<span class="text-green-400 text-sm font-medium flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1">arrow_upward</span> 12.5%
+                        </span>
+</div>
+</div>
+</div>
+<div class="relative z-10 flex-grow flex items-end h-64 mt-8">
+<!-- Abstract Bar Chart -->
+<div class="w-full flex justify-between items-end h-full px-4 gap-4">
+<!-- Mon -->
+<div class="w-full flex flex-col items-center gap-3 group">
+<div class="w-full bg-white/10 hover:bg-white/30 transition-all rounded-t-md h-[40%] relative">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#141414] text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 shadow-xl pointer-events-none">$80k</div>
+</div>
+<span class="text-white/50 font-label-caps text-[10px] uppercase tracking-widest">Mon</span>
+</div>
+<!-- Tue -->
+<div class="w-full flex flex-col items-center gap-3 group">
+<div class="w-full bg-white/10 hover:bg-white/30 transition-all rounded-t-md h-[55%] relative">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#141414] text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 shadow-xl pointer-events-none">$110k</div>
+</div>
+<span class="text-white/50 font-label-caps text-[10px] uppercase tracking-widest">Tue</span>
+</div>
+<!-- Wed -->
+<div class="w-full flex flex-col items-center gap-3 group">
+<div class="w-full bg-white/10 hover:bg-white/30 transition-all rounded-t-md h-[30%] relative">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#141414] text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 shadow-xl pointer-events-none">$60k</div>
+</div>
+<span class="text-white/50 font-label-caps text-[10px] uppercase tracking-widest">Wed</span>
+</div>
+<!-- Thu -->
+<div class="w-full flex flex-col items-center gap-3 group">
+<div class="w-full bg-white/10 hover:bg-white/30 transition-all rounded-t-md h-[70%] relative">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#141414] text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 shadow-xl pointer-events-none">$140k</div>
+</div>
+<span class="text-white/50 font-label-caps text-[10px] uppercase tracking-widest">Thu</span>
+</div>
+<!-- Fri -->
+<div class="w-full flex flex-col items-center gap-3 group">
+<div class="w-full bg-white/30 hover:bg-white/50 transition-all rounded-t-md h-[85%] relative border-t-2 border-white shadow-[0_-4px_20px_rgba(255,255,255,0.2)]">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#141414] text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 shadow-xl pointer-events-none">$170k</div>
+</div>
+<span class="text-white font-label-caps text-[10px] uppercase tracking-widest font-bold">Fri</span>
+</div>
+<!-- Sat -->
+<div class="w-full flex flex-col items-center gap-3 group">
+<div class="w-full bg-white/10 hover:bg-white/30 transition-all rounded-t-md h-[45%] relative">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#141414] text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 shadow-xl pointer-events-none">$90k</div>
+</div>
+<span class="text-white/50 font-label-caps text-[10px] uppercase tracking-widest">Sat</span>
+</div>
+<!-- Sun -->
+<div class="w-full flex flex-col items-center gap-3 group">
+<div class="w-full bg-white/10 hover:bg-white/30 transition-all rounded-t-md h-[60%] relative">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#141414] text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 shadow-xl pointer-events-none">$120k</div>
+</div>
+<span class="text-white/50 font-label-caps text-[10px] uppercase tracking-widest">Sun</span>
+</div>
+</div>
+</div>
+<div class="relative z-10 mt-8 pt-6 border-t border-white/10 flex gap-12">
+<div>
+<span class="block text-white/50 font-label-caps text-[11px] uppercase tracking-widest mb-2">Gross Revenue</span>
+<span class="text-white font-medium text-2xl tracking-tight">$892,400</span>
+</div>
+<div>
+<span class="block text-white/50 font-label-caps text-[11px] uppercase tracking-widest mb-2">Avg Order Value</span>
+<span class="text-white font-medium text-2xl tracking-tight">$142.50</span>
+</div>
+</div>
+</div>
+<!-- Bento Item 2 & 3 Column -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-card-gap">
+<!-- VENUE CAPACITY -->
+<div class="bg-[#141414] rounded-[24px] p-[24px] border border-white/5 shadow-xl relative overflow-hidden flex-1 flex flex-col">
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-indigo-500/10 rounded-full blur-[60px] pointer-events-none"></div>
+<div class="flex justify-between items-center mb-6 relative z-10">
+<h3 class="font-medium text-white/80 tracking-tight">Venue Capacity</h3>
+<span class="material-symbols-outlined text-indigo-400 text-xl">storefront</span>
+</div>
+<div class="flex flex-col items-center justify-center flex-grow relative z-10">
+<!-- Custom CSS Radial Progress Approximation -->
+<div class="relative w-40 h-40 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<!-- Background Circle -->
+<path class="text-white/5" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="2.5"></path>
+<!-- Progress Circle -->
+<path class="text-indigo-400" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="75, 100" stroke-linecap="round" stroke-width="2.5"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-white font-medium text-[32px] tracking-tight">75%</span>
+<span class="font-label-caps text-[10px] text-white/40 uppercase tracking-widest mt-1">Filled</span>
+</div>
+</div>
+</div>
+<div class="mt-8 flex flex-wrap gap-3 justify-center relative z-10">
+<span class="px-3 py-1.5 rounded-lg bg-white/5 text-white/60 text-xs font-medium border border-white/5 tracking-wide">NYC: 82%</span>
+<span class="px-3 py-1.5 rounded-lg bg-white/5 text-white/60 text-xs font-medium border border-white/5 tracking-wide">LA: 65%</span>
+<span class="px-3 py-1.5 rounded-lg bg-white/5 text-white/60 text-xs font-medium border border-white/5 tracking-wide">CHI: 91%</span>
+</div>
+</div>
+<!-- STABILIZING LABOR COST (Alert) -->
+<div class="bg-[#141414] rounded-[24px] p-[24px] border border-red-500/20 shadow-xl relative overflow-hidden group h-[160px] flex flex-col justify-center">
+<div class="absolute inset-0 bg-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="flex items-start gap-5 relative z-10">
+<div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center shrink-0 border border-red-500/20 text-red-400">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+</div>
+<div class="flex-1">
+<h4 class="font-medium text-white/90 text-sm mb-1.5 tracking-tight">High Labor Cost Alert</h4>
+<p class="text-xs text-white/50 mb-4">Labor cost stabilizing in T-minus:</p>
+<div class="flex items-center justify-between">
+<span class="text-red-400 font-medium text-lg tracking-wider">02:14:45</span>
+<button class="w-8 h-8 rounded-full bg-red-500/10 hover:bg-red-500/20 flex items-center justify-center text-red-400 transition-colors border border-red-500/20">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard / Locations - Aethel Ops</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#002585",
+                      "on-primary-fixed-variant": "#8c1713",
+                      "on-error": "#690005",
+                      "on-secondary-fixed": "#001454",
+                      "background": "#0c141f",
+                      "surface-bright": "#323946",
+                      "inverse-on-surface": "#2a313d",
+                      "on-tertiary-container": "#333232",
+                      "tertiary-fixed": "#e5e2e1",
+                      "surface-container-low": "#151c27",
+                      "on-primary-container": "#6d0004",
+                      "inverse-primary": "#ae3027",
+                      "on-error-container": "#ffdad6",
+                      "on-tertiary-fixed": "#1c1b1b",
+                      "tertiary-fixed-dim": "#c8c6c5",
+                      "primary": "#ffb4aa",
+                      "outline-variant": "#59413e",
+                      "on-primary-fixed": "#410001",
+                      "error": "#ffb4ab",
+                      "on-surface-variant": "#e0bfba",
+                      "surface-variant": "#2e3541",
+                      "tertiary-container": "#9c9a9a",
+                      "outline": "#a88a86",
+                      "surface": "#0c141f",
+                      "inverse-surface": "#dce2f3",
+                      "on-primary": "#690003",
+                      "on-tertiary-fixed-variant": "#474746",
+                      "surface-container-lowest": "#070e19",
+                      "secondary-fixed": "#dde1ff",
+                      "surface-tint": "#ffb4aa",
+                      "on-secondary-container": "#a5b5ff",
+                      "on-secondary-fixed-variant": "#0037ba",
+                      "secondary": "#b8c4ff",
+                      "primary-fixed-dim": "#ffb4aa",
+                      "primary-fixed": "#ffdad5",
+                      "error-container": "#93000a",
+                      "surface-dim": "#0c141f",
+                      "primary-container": "#ff6b5c",
+                      "surface-container": "#19202b",
+                      "surface-container-highest": "#2e3541",
+                      "secondary-fixed-dim": "#b8c4ff",
+                      "on-tertiary": "#313030",
+                      "surface-container-high": "#232a36",
+                      "on-background": "#dce2f3",
+                      "secondary-container": "#0239bf",
+                      "on-surface": "#dce2f3",
+                      "tertiary": "#c8c6c5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section-margin": "48px",
+                      "unit": "4px",
+                      "card-gap": "24px",
+                      "inner-padding": "20px",
+                      "container-padding": "32px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "data-mono": ["Inter"],
+                      "body-base": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "body-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                      "data-mono": ["13px", {"lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                      "body-base": ["14px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "label-caps": ["11px", {"lineHeight": "1", "letterSpacing": "0.06em", "fontWeight": "600"}],
+                      "body-sm": ["13px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for premium feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-[#0f1115] text-on-background min-h-screen overflow-hidden selection:bg-primary/30 selection:text-primary">
+<!-- Map Background Canvas -->
+<div class="fixed inset-0 left-[72px] z-0 overflow-hidden bg-[#0a111a]">
+<div class="absolute inset-0 bg-gradient-to-b from-[#0f1115]/80 via-transparent to-[#0f1115]/90 z-10 pointer-events-none"></div>
+<img alt="World Map Topology" class="w-full h-full object-cover opacity-30 mix-blend-screen scale-105" data-alt="A highly detailed, stylized digital map of the globe rendered in a desaturated cyan and dark teal color palette. The map features luminous, glowing nodes indicating active data centers and network traffic lines connecting major global hubs. The scene is illuminated by an atmospheric, cinematic low-light environment, creating a premium, high-tech command center aesthetic. The background is a deep, near-black void to emphasize the glowing data points." data-location="Global Topology Map" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC70cB3CQcFrsMExobyyrPFHXByGMbaSZMykUQHKi4sogUOpmE-ld5JrKao5oLq_qPr486u34lDb43_dM4ufIA0Od1xaIbwAzyTsZ7AAPLNabHQavt68Xvjm8cjq1qrxXM23BvqtsLf-1OKyWELMeM8r6qqD1Vjs0b_uCARtqYCeZlkIrGu1QsJY7pGJHaYPikHcnuRsQesFp0PRx47eyT7YPxVPQkd-BBO-eywac7xDZ-nPoc0Or_lkcwCW10nCqH9ZSMH9wWGI-I"/>
+<!-- Map Overlay Grid -->
+<div class="absolute inset-0 z-10" style="background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 24px 24px;"></div>
+<!-- Map Pins (Simulated) -->
+<div class="absolute z-20 top-[40%] left-[25%] flex flex-col items-center group cursor-pointer">
+<div class="w-4 h-4 rounded-full bg-teal-500 shadow-[0_0_20px_rgba(20,184,166,0.8)] animate-pulse"></div>
+<div class="mt-2 px-2 py-1 bg-[#1a1d24] border border-white/10 rounded text-data-mono font-data-mono text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-md">LAX-01</div>
+</div>
+<div class="absolute z-20 top-[35%] left-[35%] flex flex-col items-center group cursor-pointer">
+<div class="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.6)]"></div>
+<div class="mt-2 px-2 py-1 bg-[#1a1d24] border border-white/10 rounded text-data-mono font-data-mono text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-md">CHI-02</div>
+</div>
+<div class="absolute z-20 top-[38%] left-[45%] flex flex-col items-center group cursor-pointer">
+<div class="w-5 h-5 rounded-full border-2 border-primary bg-primary/20 shadow-[0_0_25px_rgba(255,107,92,0.5)] flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="mt-2 px-2 py-1 bg-[#1a1d24] border border-primary/30 rounded text-data-mono font-data-mono text-primary backdrop-blur-md">JFK-04</div>
+</div>
+</div>
+<!-- JSON Component: SideNavBar -->
+<nav class="w-[72px] h-screen fixed left-0 top-0 bg-[#0f1115] border-r border-white/5 flex flex-col items-center py-8 gap-8 z-50">
+<!-- Brand/Header -->
+<div class="flex flex-col items-center gap-1 mb-4">
+<div class="w-10 h-10 rounded-lg bg-[#1a1d24] border border-white/10 flex items-center justify-center shadow-lg">
+<span class="text-primary font-black font-headline-md text-headline-md tracking-tighter">AI</span>
+</div>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest text-zinc-500">Ops</span>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex flex-col gap-4 w-full px-2">
+<!-- Active Tab: Dashboard -->
+<button class="w-full aspect-square flex flex-col items-center justify-center gap-1 group text-primary bg-primary/10 rounded-lg shadow-[0_0_15px_rgba(255,107,92,0.2)]" title="Dashboard">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+</button>
+<!-- Inactive Tabs -->
+<button class="w-full aspect-square flex flex-col items-center justify-center gap-1 group text-zinc-500 hover:text-zinc-200 hover:bg-white/5 transition-colors rounded-lg" title="Analytics">
+<span class="material-symbols-outlined">insights</span>
+</button>
+<button class="w-full aspect-square flex flex-col items-center justify-center gap-1 group text-zinc-500 hover:text-zinc-200 hover:bg-white/5 transition-colors rounded-lg" title="Operations">
+<span class="material-symbols-outlined">settings_input_component</span>
+</button>
+<button class="w-full aspect-square flex flex-col items-center justify-center gap-1 group text-zinc-500 hover:text-zinc-200 hover:bg-white/5 transition-colors rounded-lg" title="Intelligence">
+<span class="material-symbols-outlined">psychology</span>
+</button>
+<button class="w-full aspect-square flex flex-col items-center justify-center gap-1 group text-zinc-500 hover:text-zinc-200 hover:bg-white/5 transition-colors rounded-lg" title="Settings">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+<div class="mt-auto w-full px-2">
+<button class="w-full aspect-square flex flex-col items-center justify-center gap-1 group text-zinc-500 hover:text-zinc-200 hover:bg-white/5 transition-colors rounded-lg" title="Support">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</nav>
+<!-- JSON Component: TopNavBar -->
+<header class="fixed top-0 left-[72px] right-0 h-16 flex justify-between items-center px-8 z-40 bg-[#0f1115]/80 backdrop-blur-xl border-b border-white/5">
+<!-- Left: Brand / Breadcrumbs -->
+<div class="flex items-center gap-3">
+<span class="text-lg font-bold tracking-tighter text-white font-headline-md">Aethel Ops</span>
+<div class="h-4 w-px bg-white/10 mx-2"></div>
+<div class="flex items-center gap-2 text-sm text-zinc-400 font-['Inter'] font-medium">
+<span class="hover:text-zinc-200 cursor-pointer transition-colors duration-200">Dashboard</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-semibold">Locations</span>
+</div>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg text-zinc-400 hover:bg-white/5 transition-all duration-200 hover:text-zinc-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-lg text-primary hover:bg-white/5 transition-all duration-200 bg-primary/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</button>
+<div class="ml-2 w-8 h-8 rounded-full bg-[#1a1d24] border border-white/10 overflow-hidden ml-2 cursor-pointer shadow-sm">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A small, circular avatar portrait of an individual, softly lit with a neutral background, suitable for a dark-mode enterprise application header." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxVx7hT54EYuPpi2a5BUIg_lLhpfoCCOOeCM6OvJWWkdJBujSy2rvOC3dNR1YsYvSFgPIwB_wjXdKNpsS9U4ogo7XyQe6NjzhOS_zq7N8DcH7htRvFnX-v02f1JpJI-gdV_VGFrWOEjfOWFdf5o320JPmtGjL2nJchWQYdpdff1gJWNjkJ70IYiMqCOeKzluAc3qpIDdEORszKT2Ul2AnpRIzyKUmc2_wyvsIThb91QbsNmwYp40m463U8NaBWdebxM6ASBZsTCto"/>
+</div>
+</div>
+</header>
+<!-- Canvas Area: Floating Performance Sidebar -->
+<main class="fixed top-[88px] right-8 bottom-8 w-[400px] z-30 flex flex-col gap-4">
+<!-- Sidebar Header Card -->
+<div class="bg-[#1a1d24]/90 backdrop-blur-2xl border border-white/5 rounded-[20px] p-5 shadow-2xl flex flex-col gap-4 relative overflow-hidden">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface">Network Hubs</h2>
+<span class="px-2.5 py-1 rounded bg-primary/10 text-primary font-label-caps text-label-caps border border-primary/20">3 ACTIVE</span>
+</div>
+<!-- Quick Filter/Search -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full bg-[#0f1115]/50 border border-white/10 rounded-lg pl-9 pr-4 py-2 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary/50 transition-colors placeholder:text-on-surface-variant" placeholder="Filter locations..." type="text"/>
+</div>
+</div>
+<!-- Scrollable Locations List -->
+<div class="flex-1 overflow-y-auto flex flex-col gap-4 pr-1">
+<!-- Location Card: NYC (Selected/Active) -->
+<div class="bg-[#1a1d24]/90 backdrop-blur-2xl border border-primary/30 rounded-[20px] p-5 relative overflow-hidden cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+<!-- Active Indicator Glow -->
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex justify-between items-start mb-4 pl-2">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-body-base text-body-base font-semibold text-on-surface">US East (NYC)</h3>
+<div class="w-2 h-2 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.6)]"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">JFK-04 • Primary Router</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">more_horiz</span>
+</div>
+<div class="grid grid-cols-2 gap-4 pl-2">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">LATENCY</span>
+<span class="font-data-mono text-data-mono text-on-surface">12<span class="text-on-surface-variant text-xs">ms</span></span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">THROUGHPUT</span>
+<span class="font-data-mono text-data-mono text-on-surface">8.4<span class="text-on-surface-variant text-xs">Gbps</span></span>
+</div>
+</div>
+<!-- Expanded Drill-down for Active Card -->
+<div class="mt-4 pt-4 border-t border-white/5 pl-2">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">NODE HEALTH</span>
+<span class="font-data-mono text-data-mono text-primary">99.99%</span>
+</div>
+<div class="w-full h-1.5 bg-[#0f1115] rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 99.99%"></div>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 py-1.5 rounded bg-[#0f1115] border border-white/10 font-label-caps text-label-caps text-on-surface hover:bg-white/5 transition-colors">DIAGNOSE</button>
+<button class="flex-1 py-1.5 rounded bg-primary text-[#0f1115] font-label-caps text-label-caps font-bold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">REBOOT</button>
+</div>
+</div>
+</div>
+<!-- Location Card: LAX (Inactive) -->
+<div class="bg-[#1a1d24]/70 backdrop-blur-md border border-white/5 rounded-[20px] p-5 hover:bg-[#1a1d24] transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-body-base text-body-base font-semibold text-on-surface group-hover:text-primary transition-colors">US West (LAX)</h3>
+<div class="w-2 h-2 rounded-full bg-teal-500 shadow-[0_0_8px_rgba(20,184,166,0.4)] opacity-70"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">LAX-01 • Edge Node</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">LATENCY</span>
+<span class="font-data-mono text-data-mono text-on-surface">45<span class="text-on-surface-variant text-xs">ms</span></span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">THROUGHPUT</span>
+<span class="font-data-mono text-data-mono text-on-surface">3.2<span class="text-on-surface-variant text-xs">Gbps</span></span>
+</div>
+</div>
+</div>
+<!-- Location Card: CHI (Inactive, Warning) -->
+<div class="bg-[#1a1d24]/70 backdrop-blur-md border border-white/5 rounded-[20px] p-5 hover:bg-[#1a1d24] transition-colors cursor-pointer group relative overflow-hidden">
+<!-- Warning Indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500/50"></div>
+<div class="flex justify-between items-start mb-4 pl-2">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-body-base text-body-base font-semibold text-on-surface group-hover:text-blue-400 transition-colors">US Central (CHI)</h3>
+<div class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)] animate-pulse"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">CHI-02 • Database Sync</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pl-2">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">LATENCY</span>
+<span class="font-data-mono text-data-mono text-blue-400">112<span class="text-on-surface-variant text-xs">ms</span></span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">THROUGHPUT</span>
+<span class="font-data-mono text-data-mono text-on-surface">1.1<span class="text-on-surface-variant text-xs">Gbps</span></span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

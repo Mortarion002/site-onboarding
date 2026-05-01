@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Operations &amp; Labor Screen</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#b8c4ff",
+                        "on-primary-container": "#6d0004",
+                        "inverse-primary": "#ae3027",
+                        "on-tertiary-container": "#333232",
+                        "surface": "#0c141f",
+                        "on-primary": "#690003",
+                        "on-secondary-fixed-variant": "#0037ba",
+                        "outline-variant": "#59413e",
+                        "primary": "#ffb4aa",
+                        "outline": "#a88a86",
+                        "surface-tint": "#ffb4aa",
+                        "on-secondary-fixed": "#001454",
+                        "on-tertiary": "#313030",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#dce2f3",
+                        "on-error": "#690005",
+                        "on-secondary": "#002585",
+                        "surface-container": "#19202b",
+                        "surface-container-highest": "#2e3541",
+                        "tertiary-fixed": "#e5e2e1",
+                        "surface-container-high": "#232a36",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "on-primary-fixed-variant": "#8c1713",
+                        "primary-fixed": "#ffdad5",
+                        "secondary-fixed-dim": "#b8c4ff",
+                        "inverse-on-surface": "#2a313d",
+                        "on-secondary-container": "#a5b5ff",
+                        "secondary-container": "#0239bf",
+                        "primary-container": "#ff6b5c",
+                        "inverse-surface": "#dce2f3",
+                        "surface-bright": "#323946",
+                        "on-surface-variant": "#e0bfba",
+                        "surface-container-low": "#151c27",
+                        "surface-variant": "#2e3541",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "surface-dim": "#0c141f",
+                        "background": "#0c141f",
+                        "on-primary-fixed": "#410001",
+                        "surface-container-lowest": "#070e19",
+                        "tertiary": "#c8c6c5",
+                        "primary-fixed-dim": "#ffb4aa",
+                        "on-surface": "#dce2f3",
+                        "secondary-fixed": "#dde1ff",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#9c9a9a",
+                        "error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-margin": "48px",
+                        "unit": "4px",
+                        "card-gap": "24px",
+                        "inner-padding": "20px",
+                        "container-padding": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "body-base": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "data-mono": ["13px", { "lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "body-base": ["14px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "1", "letterSpacing": "0.06em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Level 1 Card styling with simulated top light */
+        .card-level-1 {
+            background-color: theme('colors.surface-container');
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: theme('spacing.inner-padding');
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .card-level-1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            z-index: 10;
+        }
+
+        /* Subtle radial gradient for AI insight modules */
+        .bg-insight-glow {
+            background: radial-gradient(circle at top right, rgba(255, 107, 92, 0.05) 0%, theme('colors.surface-container') 60%);
+        }
+    </style>
+</head>
+<body class="bg-[#0f1115] text-on-surface font-body-base antialiased min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-white">
+<!-- SideNavBar -->
+<nav class="w-[72px] h-screen fixed left-0 top-0 border-r border-white/5 bg-[#0f0f0f] flex flex-col items-center py-8 gap-8 z-50">
+<!-- Brand -->
+<div class="flex flex-col items-center justify-center">
+<span class="text-orange-500 font-black text-xl leading-none tracking-tighter">AI</span>
+<span class="text-zinc-400 font-bold text-[10px] uppercase tracking-widest mt-1">Ops</span>
+</div>
+<!-- Main Navigation Tabs -->
+<div class="flex flex-col items-center gap-6 mt-4 w-full">
+<!-- Dashboard -->
+<a class="flex flex-col items-center gap-1 w-full group relative text-zinc-600 hover:text-zinc-200 hover:bg-white/5 transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 absolute left-full ml-4 bg-[#242424] px-3 py-2 rounded shadow-[0_20px_40px_rgba(0,0,0,0.4)] text-zinc-200 whitespace-nowrap z-50 pointer-events-none transition-opacity">Dashboard</span>
+</a>
+<!-- Analytics -->
+<a class="flex flex-col items-center gap-1 w-full group relative text-zinc-600 hover:text-zinc-200 hover:bg-white/5 transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 absolute left-full ml-4 bg-[#242424] px-3 py-2 rounded shadow-[0_20px_40px_rgba(0,0,0,0.4)] text-zinc-200 whitespace-nowrap z-50 pointer-events-none transition-opacity">Analytics</span>
+</a>
+<!-- Operations (ACTIVE) -->
+<a class="flex flex-col items-center gap-1 w-full group relative text-orange-500 bg-orange-500/10 rounded-lg scale-110 shadow-[0_0_15px_rgba(255,107,92,0.2)] p-2 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined filled" data-icon="settings_input_component">settings_input_component</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 absolute left-full ml-4 bg-[#242424] px-3 py-2 rounded shadow-[0_20px_40px_rgba(0,0,0,0.4)] text-orange-500 whitespace-nowrap z-50 pointer-events-none transition-opacity">Operations</span>
+</a>
+<!-- Intelligence -->
+<a class="flex flex-col items-center gap-1 w-full group relative text-zinc-600 hover:text-zinc-200 hover:bg-white/5 transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 absolute left-full ml-4 bg-[#242424] px-3 py-2 rounded shadow-[0_20px_40px_rgba(0,0,0,0.4)] text-zinc-200 whitespace-nowrap z-50 pointer-events-none transition-opacity">Intelligence</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center gap-1 w-full group relative text-zinc-600 hover:text-zinc-200 hover:bg-white/5 transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 absolute left-full ml-4 bg-[#242424] px-3 py-2 rounded shadow-[0_20px_40px_rgba(0,0,0,0.4)] text-zinc-200 whitespace-nowrap z-50 pointer-events-none transition-opacity">Settings</span>
+</a>
+</div>
+<div class="mt-auto mb-4 w-full flex justify-center border-t border-zinc-800/50 pt-6">
+<a class="flex flex-col items-center gap-1 w-full group relative text-zinc-600 hover:text-zinc-200 hover:bg-white/5 transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 absolute left-full ml-4 bg-[#242424] px-3 py-2 rounded shadow-[0_20px_40px_rgba(0,0,0,0.4)] text-zinc-200 whitespace-nowrap z-50 pointer-events-none transition-opacity">Support</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 left-[88px] right-4 h-16 flex justify-between items-center px-6 z-40 bg-surface-container/80 backdrop-blur-xl rounded-xl mt-4 border border-white/5 shadow-2xl shadow-black/40">
+<!-- Search Left -->
+<div class="flex items-center gap-3 w-1/3">
+<span class="material-symbols-outlined text-zinc-400 text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-['Inter'] tracking-tight text-white placeholder-zinc-500 w-full" placeholder="Search operational indices..." type="text"/>
+</div>
+<!-- Brand Centerish (Optional but in JSON) -->
+<div class="absolute left-1/2 -translate-x-1/2 flex items-center">
+<span class="text-lg font-bold tracking-tighter text-white">Aethel Ops</span>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="text-zinc-400 hover:bg-white/5 transition-all duration-200 p-2 rounded-full active:opacity-80 active:scale-[0.99]">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-zinc-400 hover:bg-white/5 transition-all duration-200 p-2 rounded-full active:opacity-80 active:scale-[0.99]">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-variant border border-white/10 ml-2 overflow-hidden flex items-center justify-center">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A macro, high-contrast digital avatar portrait of a technical operator. The image utilizes a dark minimalist color scheme with subtle neon coral rim lighting to match a high-end UI dashboard aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7yRoBnBnUYwHAnkuZNgz1iznF5OB4NkTcltvUDadjVaKMFS56_jAkc8XkcroINg7aEAPM0KdC1b7stZMS_aL4JW7jnMvcGCJ5tQKVe3iyAcW3mx6rZTH66AYPEiN5vOmkaglI43ecb96htlDE6Q1NT6rd1V0AiTjXcTAThjc5Th6i0UVvzroxjrRyffJgbJuibZL-vbyTm7c-nxMmZc07Wk97BTsxmD1U8WIqM24XM4Kb5TSagMoL3qeRrwyR5mDVLzBOxpLTU0Q"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-[72px] mt-[88px] p-container-padding">
+<!-- Header & Breadcrumbs -->
+<div class="mb-section-margin pl-2">
+<div class="flex items-center gap-2 text-zinc-500 font-body-sm mb-2">
+<span class="material-symbols-outlined text-sm">home</span>
+<span>/</span>
+<span>Dashboard</span>
+<span>/</span>
+<span class="text-primary-container font-medium">Operations</span>
+</div>
+<h1 class="font-display-lg text-on-surface">Labor Operations</h1>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-card-gap">
+<!-- Metric Card 1: Total Cost -->
+<div class="col-span-12 md:col-span-3 card-level-1 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-label-caps text-on-surface-variant mb-1">Total Labor Cost</h3>
+<div class="font-headline-md text-on-surface">$142,850</div>
+</div>
+<div class="p-2 bg-surface-variant rounded-lg text-primary-container">
+<span class="material-symbols-outlined">payments</span>
+</div>
+</div>
+<div class="flex items-center gap-2 font-data-mono text-error">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+4.2%</span>
+<span class="text-on-surface-variant font-body-sm ml-1">vs last period</span>
+</div>
+</div>
+<!-- Metric Card 2: Cost per Unit -->
+<div class="col-span-12 md:col-span-3 card-level-1 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-label-caps text-on-surface-variant mb-1">Cost per Output</h3>
+<div class="font-headline-md text-on-surface">$2.40</div>
+</div>
+<div class="p-2 bg-surface-variant rounded-lg text-secondary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+</div>
+<div class="flex items-center gap-2 font-data-mono text-emerald-400">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span>-1.1%</span>
+<span class="text-on-surface-variant font-body-sm ml-1">efficiency gain</span>
+</div>
+</div>
+<!-- Metric Card 3: Labor % of Rev -->
+<div class="col-span-12 md:col-span-3 card-level-1 flex flex-col justify-between bg-insight-glow">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-label-caps text-on-surface-variant mb-1">Labor to Revenue</h3>
+<div class="font-headline-md text-on-surface">18.5%</div>
+</div>
+<div class="p-2 bg-primary-container/10 border border-primary-container/20 rounded-lg text-primary-container">
+<span class="material-symbols-outlined">percent</span>
+</div>
+</div>
+<div class="flex items-center gap-2 font-data-mono text-primary-container">
+<span class="material-symbols-outlined text-[16px]">priority_high</span>
+<span>Target: 15.0%</span>
+</div>
+</div>
+<!-- Metric Card 4: Overtime -->
+<div class="col-span-12 md:col-span-3 card-level-1 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-label-caps text-on-surface-variant mb-1">Overtime Hours</h3>
+<div class="font-headline-md text-on-surface">342<span class="text-lg text-on-surface-variant ml-1">hrs</span></div>
+</div>
+<div class="p-2 bg-surface-variant rounded-lg text-tertiary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<!-- Main Area Chart: Cost Over Time (Peak vs Non-Peak) -->
+<div class="col-span-12 md:col-span-8 card-level-1 h-[400px] flex flex-col relative">
+<div class="flex justify-between items-center mb-6 z-10 relative">
+<div>
+<h2 class="font-headline-md text-on-surface">Cost Volatility</h2>
+<p class="font-body-sm text-on-surface-variant">Peak vs Non-Peak operational expenditure</p>
+</div>
+<div class="flex gap-4 font-label-caps">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-primary-container block"></span> Peak</div>
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-secondary block"></span> Non-Peak</div>
+</div>
+</div>
+<!-- Simulated Layered Area Chart -->
+<div class="flex-grow w-full relative flex items-end opacity-90 border-b border-l border-white/10 pb-4 pl-4 pt-10">
+<!-- Grid lines -->
+<div class="absolute inset-0 border-t border-white/5 top-1/4"></div>
+<div class="absolute inset-0 border-t border-white/5 top-2/4"></div>
+<div class="absolute inset-0 border-t border-white/5 top-3/4"></div>
+<!-- Non-Peak Area (Secondary Color) -->
+<div class="absolute bottom-4 left-4 right-0 h-[60%] flex items-end px-2" style="clip-path: polygon(0 80%, 10% 70%, 20% 75%, 30% 60%, 40% 65%, 50% 50%, 60% 55%, 70% 30%, 80% 40%, 90% 20%, 100% 35%, 100% 100%, 0% 100%);">
+<div class="w-full h-full bg-gradient-to-t from-secondary/5 to-secondary/30"></div>
+<div class="absolute top-0 w-full h-[2px] bg-secondary" style="clip-path: polygon(0 80%, 10% 70%, 20% 75%, 30% 60%, 40% 65%, 50% 50%, 60% 55%, 70% 30%, 80% 40%, 90% 20%, 100% 35%, 100% 37%, 90% 22%, 80% 42%, 70% 32%, 60% 57%, 50% 52%, 40% 67%, 30% 62%, 20% 77%, 10% 72%, 0 82%);"></div>
+</div>
+<!-- Peak Area (Primary Color - Overlay) -->
+<div class="absolute bottom-4 left-4 right-0 h-[80%] flex items-end px-2" style="clip-path: polygon(0 90%, 10% 85%, 20% 90%, 30% 75%, 40% 80%, 50% 60%, 60% 70%, 70% 40%, 80% 55%, 90% 10%, 100% 20%, 100% 100%, 0% 100%);">
+<div class="w-full h-full bg-gradient-to-t from-primary-container/10 to-primary-container/40 mix-blend-screen"></div>
+<div class="absolute top-0 w-full h-[2px] bg-primary-container" style="clip-path: polygon(0 90%, 10% 85%, 20% 90%, 30% 75%, 40% 80%, 50% 60%, 60% 70%, 70% 40%, 80% 55%, 90% 10%, 100% 20%, 100% 22%, 90% 12%, 80% 57%, 70% 42%, 60% 72%, 50% 62%, 40% 82%, 30% 77%, 20% 92%, 10% 87%, 0 92%);"></div>
+</div>
+<!-- X-Axis Labels -->
+<div class="absolute -bottom-6 left-4 right-0 flex justify-between font-data-mono text-[10px] text-zinc-500">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+</div>
+<!-- Staff Utilization Radial -->
+<div class="col-span-12 md:col-span-4 card-level-1 h-[400px] flex flex-col items-center justify-center relative">
+<div class="absolute top-inner-padding left-inner-padding w-full">
+<h2 class="font-headline-md text-on-surface">Staff Utilization</h2>
+<p class="font-body-sm text-on-surface-variant">Active vs idle capacity</p>
+</div>
+<!-- Radial Chart SVG -->
+<div class="relative w-48 h-48 mt-8">
+<!-- Background Track -->
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="40" stroke="#242424" stroke-linecap="round" stroke-width="8"></circle>
+<!-- Active Fill (Secondary) - 82% -->
+<circle cx="50" cy="50" fill="none" r="40" stroke="#b8c4ff" stroke-dasharray="251.2" stroke-dashoffset="45.2" stroke-linecap="round" stroke-width="8" transform="rotate(-90 50 50)"></circle>
+</svg>
+<!-- Center Metric -->
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg text-secondary leading-none">82<span class="text-xl">%</span></span>
+<span class="font-label-caps text-on-surface-variant mt-1 tracking-widest">ACTIVE</span>
+</div>
+</div>
+<div class="w-full mt-8 px-4">
+<div class="flex justify-between items-center mb-2 font-data-mono text-xs">
+<span class="text-on-surface-variant">Idle Capacity</span>
+<span class="text-on-surface">18%</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1 rounded-full">
+<div class="bg-outline h-full rounded-full" style="width: 18%"></div>
+</div>
+</div>
+</div>
+<!-- Detail List (Bottom Span) -->
+<div class="col-span-12 card-level-1">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-on-surface">Live Shift Performance</h2>
+<button class="bg-transparent border border-secondary text-secondary px-4 py-2 rounded-lg font-data-mono hover:bg-secondary/10 transition-colors">EXPORT DATA</button>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left font-body-sm">
+<thead class="border-b border-white/5 font-label-caps text-on-surface-variant">
+<tr>
+<th class="pb-3 font-medium">Shift ID</th>
+<th class="pb-3 font-medium">Zone</th>
+<th class="pb-3 font-medium">Headcount</th>
+<th class="pb-3 font-medium">Efficiency Score</th>
+<th class="pb-3 font-medium text-right">Variance</th>
+</tr>
+</thead>
+<tbody class="text-on-surface font-data-mono">
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="py-4">#SH-A921</td>
+<td class="py-4">Sector North</td>
+<td class="py-4">24</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 h-1.5 bg-surface-container-highest rounded-full overflow-hidden"><div class="bg-secondary h-full" style="width: 92%"></div></div>
+<span>92</span>
+</div>
+</td>
+<td class="py-4 text-right text-emerald-400">+2.4%</td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="py-4">#SH-B104</td>
+<td class="py-4">Sector East</td>
+<td class="py-4">18</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 h-1.5 bg-surface-container-highest rounded-full overflow-hidden"><div class="bg-primary-container h-full" style="width: 68%"></div></div>
+<span>68</span>
+</div>
+</td>
+<td class="py-4 text-right text-error">-5.1%</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="py-4">#SH-C442</td>
+<td class="py-4">Core Facility</td>
+<td class="py-4">42</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 h-1.5 bg-surface-container-highest rounded-full overflow-hidden"><div class="bg-secondary h-full" style="width: 88%"></div></div>
+<span>88</span>
+</div>
+</td>
+<td class="py-4 text-right text-emerald-400">+0.8%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</body></html>
